@@ -1,0 +1,10 @@
+.mistake {
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: Arial sans-serif;
+    font-weight: 300;
+}
+
+.mistake > span {
+    color: coral;
+}

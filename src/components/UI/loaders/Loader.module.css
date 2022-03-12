@@ -1,0 +1,18 @@
+.loader {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px dashed teal;
+    display: flex;
+    justify-content: center;
+    animation: anim 750ms infinite linear;
+}
+
+@keyframes anim {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(720deg);
+    }
+}

@@ -4,6 +4,7 @@ import Header from './components/Header'
 import { AuthContext } from './context/auth';
 import { BrowserRouter } from 'react-router-dom';
 import Routing from './components/Routing';
+import ListComments from './components/ListComments';
 
 
 const App = () => {

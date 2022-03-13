@@ -4,11 +4,9 @@ import Header from './components/Header'
 import { AuthContext } from './context/auth';
 import { BrowserRouter } from 'react-router-dom';
 import Routing from './components/Routing';
-import ListComments from './components/ListComments';
-
 
 const App = () => {
-  const [isAuth, setIsAuth] = React.useState<boolean>(false);
+  const [isAuth, setIsAuth] = React.useState<boolean>(false); // FALSE !!!
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {

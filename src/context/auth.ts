@@ -6,4 +6,5 @@ interface IAuthContext {
     setIsAuth: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+
 export const AuthContext = React.createContext<Partial<IAuthContext>>({});

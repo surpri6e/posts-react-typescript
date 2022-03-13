@@ -12,6 +12,7 @@ const Header: React.FC = () => {
         ev.preventDefault();
         setIsAuth!(false);
         localStorage.removeItem('auth');
+        console.log('sd')
     }
 
 
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
           
       }
 
-      <Button click={() => logout}>Выйти</Button>
+      <Button click={logout}>Выйти</Button>
     </div>
   )
 }

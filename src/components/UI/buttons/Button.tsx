@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react'
 import cl from './Button.module.css';
 
 interface ButtonProps {
-    click?: () => void;
+    click?: (ev?: any) => void;
     _addStyle?: CSSProperties;
 }
 

@@ -7,26 +7,34 @@ import Loader from '../components/UI/loaders/Loader';
 import Mistake from '../components/UI/mistakes/Mistake';
 
 import { usePosts } from '../hooks/usePosts';
+import { useFetching } from '../hooks/useFetching';
 
 import PostService from '../API/PostService';
 
 import { getPageCount, getPagesArray } from '../utils/pagesUtil';
+import { IPost } from '../types/postsTypes';
+import { IFilter } from '../types/filterTypes';
+import PostsList from '../components/Posts/PostsList';
+
+import '../styles/PostsPage.css'
 
 
 const PostsPage: React.FC = () => {
-  const [posts, setPosts] = React.useState([]);
-  const [filter, setFilter] = React.useState({sorted: '', search: ''});
-  const [visible, setVisble] = React.useState(false);
-  const [totalPages, setTotalPages] = React.useState(0);
+  const [posts, setPosts] = React.useState<IPost[]>([]);
+  const [filter, /* setFilter */] = React.useState<IFilter>({sorted: '', search: ''});
+  const [visible, setVisble] = React.useState<boolean>(false);
+  const [totalPages, setTotalPages] = React.useState<number>(0);
 
   const sortedAndSearchedPosts = usePosts(posts, filter.sorted, filter.search);
 
-  const [limit] = React.useState(10);
-  const [page, setPage] = React.useState(1);
+  const [limit] = React.useState<number>(10);
+  const [page, setPage] = React.useState<number>(1);
 
   const pages = getPagesArray(totalPages);
 
-  const [serverRequest, isLoading, err] = useFetching(async () => {
+
+
+  const {serverRequest, isLoading, err} = useFetching(async () => {
     const res = await PostService.getAll(limit, page);
     setPosts(res.data);
     const totalCount = res.headers['x-total-count'];
@@ -38,12 +46,12 @@ const PostsPage: React.FC = () => {
     // eslint-disable-next-line
   }, [page])
 
-  const createPost = newPost => {
-    setPosts([...posts, newPost]);
-    setVisble(false);
-  }
+  // const createPost = newPost => {
+  //   setPosts([...posts, newPost]);
+  //   setVisble(false);
+  // }
   
-  const deletePost = post => {
+  const deletePost = (post: IPost) => {
     setPosts(posts.filter(p => p.id !== post.id));
   }
 
@@ -62,7 +70,7 @@ const PostsPage: React.FC = () => {
       {
         isLoading
           ? <Loader/>
-          : <PostList remove={deletePost} posts={sortedAndSearchedPosts} category={'Список постов'}/>
+          : <PostsList remove={deletePost} posts={sortedAndSearchedPosts} category={'Список постов'}/>
       }
       <Pagination pages={pages} currentPage={page} setCurrentPage={setPage}/>
     </div>

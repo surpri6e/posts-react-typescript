@@ -1,7 +1,5 @@
-import { sortAndDeduplicateDiagnostics } from "typescript";
-
-export const getPageCount = (totalCount: number, limit: number) => {
-    return Math.ceil(totalCount / limit);
+export const getPageCount = (totalCount: string, limit: number) => {
+    return Math.ceil(parseInt(totalCount) / limit);
 }
 
 export const getPagesArray = (totalPages: number) => {

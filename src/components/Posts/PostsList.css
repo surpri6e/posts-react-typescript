@@ -1,0 +1,39 @@
+.postlist {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.postlist__title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.post__animation {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+                                             
+.post__transition-enter {
+    transform: translateX(-150px);
+}
+
+.post__transition-enter-active {
+    transform: translateX(0px);
+    transition: all 250ms linear;
+}
+
+.post__transition-exit {
+    opacity: 1;
+}
+
+.post__transition-exit-active {
+    transform: translateX(-150px);
+    transition: all 250ms linear;
+}

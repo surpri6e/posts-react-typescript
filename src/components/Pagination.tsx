@@ -8,7 +8,7 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({pages, currentPage, setCurrentPage}) => {
-    const width: string = '30px'
+    const minWidth: string = '30px'
     const marginRight = '15px'
 
   return (
@@ -20,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({pages, currentPage, setCurrentPa
                         <Button 
                             key={page}
                             click={() => setCurrentPage(page)}
-                            _addStyle={{width, marginRight, background: 'teal', border: '1px solid black', color: 'white'}}
+                            _addStyle={{minWidth, marginRight, background: 'teal', border: '1px solid black', color: 'white'}}
                         >
                             {page}
                         </Button>
@@ -28,7 +28,7 @@ const Pagination: React.FC<PaginationProps> = ({pages, currentPage, setCurrentPa
                         <Button 
                             key={page}
                             click={() => setCurrentPage(page)}
-                            _addStyle={{marginRight, width}}
+                            _addStyle={{marginRight, minWidth}}
                         >
                             {page}
                         </Button>

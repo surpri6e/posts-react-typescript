@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from './UI/buttons/Button'
+import '../styles/Pagination.css';
 
 interface PaginationProps {
     pages: number[];
@@ -12,7 +13,7 @@ const Pagination: React.FC<PaginationProps> = ({pages, currentPage, setCurrentPa
     const marginRight = '15px'
 
   return (
-    <div style={{margin: '0 30px'}}>
+    <div className={'pagination'}>
         {
             pages.map(page =>
                 currentPage === page 
@@ -20,7 +21,7 @@ const Pagination: React.FC<PaginationProps> = ({pages, currentPage, setCurrentPa
                         <Button 
                             key={page}
                             click={() => setCurrentPage(page)}
-                            _addStyle={{minWidth, marginRight, background: 'teal', border: '1px solid black', color: 'white'}}
+                            _addStyle={{minWidth, marginRight, background: 'teal', border: '1px solid black', color: 'white', marginBottom: 10}}
                         >
                             {page}
                         </Button>
@@ -28,7 +29,7 @@ const Pagination: React.FC<PaginationProps> = ({pages, currentPage, setCurrentPa
                         <Button 
                             key={page}
                             click={() => setCurrentPage(page)}
-                            _addStyle={{marginRight, minWidth}}
+                            _addStyle={{marginRight, minWidth, marginBottom: 10}}
                         >
                             {page}
                         </Button>

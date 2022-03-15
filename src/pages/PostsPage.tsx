@@ -17,6 +17,7 @@ import { IFilter } from '../types/filterTypes';
 import PostsList from '../components/Posts/PostsList';
 
 import '../styles/PostsPage.css'
+import PostCreateForm from '../components/Posts/PostCreateForm';
 
 
 const PostsPage: React.FC = () => {
@@ -32,8 +33,6 @@ const PostsPage: React.FC = () => {
 
   const pages = getPagesArray(totalPages);
 
-
-
   const {serverRequest, isLoading, err} = useFetching(async () => {
     const res = await PostService.getAll(limit, page);
     setPosts(res.data);
@@ -46,10 +45,10 @@ const PostsPage: React.FC = () => {
     // eslint-disable-next-line
   }, [page])
 
-  // const createPost = newPost => {
-  //   setPosts([...posts, newPost]);
-  //   setVisble(false);
-  // }
+  const createPost = (newPost: IPost) => {
+    setPosts([...posts, newPost]);
+    setVisble(false);
+  }
   
   const deletePost = (post: IPost) => {
     setPosts(posts.filter(p => p.id !== post.id));
@@ -57,19 +56,23 @@ const PostsPage: React.FC = () => {
 
   return (
     <div className="posts">
-      <Button click={() => setVisble(true)}>Create Post</Button>
+      <div style={{paddingTop: 20, textAlign: 'center'}}>
+        <Button click={() => setVisble(true)}>Create Post</Button>
+      </div>
       <Modal isVisible={visible} setIsVisible={setVisble}>
-        {/* <PostForm create={createPost}/> */}
-        HEHEEHHEHE
+        <PostCreateForm create={createPost}/>
       </Modal>
       {/* <PostFilter filter={filter} setFilter={setFilter} options={[
         {value: 'title', text: 'Title'},
         {value: 'body', text: 'Body'}
       ]}/> */}
-      {err && <Mistake mistake={err}/>}
+      {
+        err && 
+          <Mistake mistake={err}/>
+      }
       {
         isLoading
-          ? <Loader/>
+          ? <Loader _addStyle={{margin: '30px auto'}}/>
           : <PostsList remove={deletePost} posts={sortedAndSearchedPosts} category={'Список постов'}/>
       }
       <Pagination pages={pages} currentPage={page} setCurrentPage={setPage}/>

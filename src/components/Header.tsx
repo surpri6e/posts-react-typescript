@@ -24,7 +24,7 @@ const Header: React.FC = () => {
             privateRoutes.map(route => 
               route.inHeader
                 ?
-                  <Link key={route.path} to={route.path}>{route.inHeader}</Link>
+                  <Link style={{marginLeft: 10}} key={`private-${route.path}`} to={route.path}>{route.inHeader}</Link>
                 :
                   <></>
             )
@@ -32,14 +32,18 @@ const Header: React.FC = () => {
             publicRoutes.map(route => 
               route.inHeader
                 ?
-                  <Link key={route.path} to={route.path}>{route.inHeader}</Link>
+                  <Link style={{marginLeft: 10}} key={`public-${route.path}`} to={route.path}>{route.inHeader}</Link>
                 :
                   <></>
             )
-          
       }
-
-      <Button click={logout}>Выйти</Button>
+      {
+        isAuth
+          ?
+            <Button click={logout}>Выйти</Button>
+          :
+            <></>
+      }
     </div>
   )
 }

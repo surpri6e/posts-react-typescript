@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    flex-wrap: wrap;
     border-bottom: 1px solid teal;
 }
 

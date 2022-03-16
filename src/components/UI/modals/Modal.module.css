@@ -6,6 +6,7 @@
     bottom: 0;
     display: none;
     background-color: rgba(0, 0, 0, 0.5);
+    padding: 0 10px;
 }
 
 .modalContent {
@@ -14,6 +15,12 @@
     border-radius: 2px;
     border: 2px solid black;
     min-width: 500px;
+}
+
+@media (max-width: 600px) {
+    .modalContent {
+        min-width: 150px;
+    }
 }
 
 .modalBlock.active {

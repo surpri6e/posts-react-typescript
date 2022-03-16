@@ -7,14 +7,14 @@ import { IRoute } from "../types/routesTypes";
 
 
 export const privateRoutes: IRoute[] = [
-    {path: '/', elem: MainPage, inHeader: 'Main'},
-    {path: '/about', elem: AboutPage, inHeader: 'About'},
-    {path: '/posts', elem: PostsPage, inHeader: 'Posts'},
-    {path: '/posts/:id', elem: PostPage},
+    {path: '/', elem: MainPage, inHeader: 'Main', k: `pr-main`},
+    {path: '/about', elem: AboutPage, inHeader: 'About', k: `pr-about`},
+    {path: '/posts', elem: PostsPage, inHeader: 'Posts', k: `pr-posts`},
+    {path: '/posts/:id', elem: PostPage, k: `pr-post`},
 ]
 
 export const publicRoutes: IRoute[] = [
-    {path: '/', elem: MainPage, inHeader: 'Main'},
-    {path: '/about', elem: AboutPage, inHeader: 'About'},
-    {path: '/log', elem: LoginPage, inHeader: 'Login'}
+    {path: '/', elem: MainPage, inHeader: 'Main', k: `pu-main`},
+    {path: '/about', elem: AboutPage, inHeader: 'About', k: `pu-about`},
+    {path: '/log', elem: LoginPage, inHeader: 'Login', k: `pu-login`}
 ]

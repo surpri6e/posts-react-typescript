@@ -18,7 +18,7 @@ const ListComments: React.FC<ListCommentsProps> = ({comments, isLoading, _addSty
                 ?
                     <Loader/>
                 :
-                    <List items={comments} renderItem={(comm) => <Comment comment={comm}/>}/>
+                    <List items={comments} renderItem={(comm) => <Comment key={comm.email} comment={comm}/>}/>
         }
     </div>
   )

@@ -1,15 +1,19 @@
 .comm {
     margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid teal;
 }
 
 .commTitle {
-    font-size: 1rem;
+    display: inline-block;
+    font-size: 1.3rem;
     font-weight: 700;
     color: teal;
+    cursor: pointer;
 }
 
 .commBody {
-   font-size: 2rem;
+   font-size: 1.4rem;
    font-weight: 400;
    font-family: Arial sans-serif;
 }

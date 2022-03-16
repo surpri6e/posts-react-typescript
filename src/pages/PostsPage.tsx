@@ -18,11 +18,13 @@ import PostsList from '../components/Posts/PostsList';
 
 import '../styles/PostsPage.css'
 import PostCreateForm from '../components/Posts/PostCreateForm';
+import PostsFilter from '../components/Posts/PostsFilter';
+import { IOption } from '../types/selectOptionTypes';
 
 
 const PostsPage: React.FC = () => {
   const [posts, setPosts] = React.useState<IPost[]>([]);
-  const [filter, /* setFilter */] = React.useState<IFilter>({sorted: '', search: ''});
+  const [filter, setFilter] = React.useState<IFilter>({sorted: '', search: ''});
   const [visible, setVisble] = React.useState<boolean>(false);
   const [totalPages, setTotalPages] = React.useState<number>(0);
 
@@ -54,18 +56,20 @@ const PostsPage: React.FC = () => {
     setPosts(posts.filter(p => p.id !== post.id));
   }
 
+  const optionsFilter: IOption[] = [
+    {value: 'title', text: 'Title'},
+    {value: 'body', text: 'Body'}
+  ]
+
   return (
     <div className="posts">
-      <div style={{paddingTop: 20, textAlign: 'center'}}>
+      <div className={'posts__filter'}>
         <Button click={() => setVisble(true)}>Create Post</Button>
+        <PostsFilter filter={filter} setFilter={setFilter} options={optionsFilter}/>
       </div>
       <Modal isVisible={visible} setIsVisible={setVisble}>
         <PostCreateForm create={createPost}/>
       </Modal>
-      {/* <PostFilter filter={filter} setFilter={setFilter} options={[
-        {value: 'title', text: 'Title'},
-        {value: 'body', text: 'Body'}
-      ]}/> */}
       {
         err && 
           <Mistake mistake={err}/>

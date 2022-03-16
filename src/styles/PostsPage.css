@@ -2,3 +2,8 @@
     width: 90%;
     margin: 0 auto;
 }
+
+.posts__filter {
+    padding-top: 20px;
+    text-align: center;
+}

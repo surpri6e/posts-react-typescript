@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Routing from './components/Routing';
 
 const App = () => {
-  const [isAuth, setIsAuth] = React.useState<boolean>(false); // FALSE !!!
+  const [isAuth, setIsAuth] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {

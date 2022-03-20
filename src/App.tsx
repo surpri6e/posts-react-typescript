@@ -9,6 +9,8 @@ const App = () => {
   const [isAuth, setIsAuth] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
+  //! Сделать добавление комментариев и изменения постов 
+
   React.useEffect(() => {
     if(localStorage.getItem('auth')) {
       setIsAuth(true);

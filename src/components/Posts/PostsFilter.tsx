@@ -23,7 +23,6 @@ const PostsFilter: React.FC<PostsFilterProps> = ({filter, setFilter, options}) =
         />
         <Select
             options={options}
-            defaultText={'Filter by'}
             value={filter.sorted}
             change={selectedSort => setFilter({...filter, sorted: selectedSort})}
         />

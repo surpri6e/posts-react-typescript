@@ -1,0 +1,23 @@
+.todos__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+                                       
+.todo_anim-enter {
+    transform: translateX(-150px);
+}
+
+.todo_anim-enter-active {
+    transform: translateX(0px);
+    transition: all 250ms linear;
+}
+
+.todo_anim-exit {
+    opacity: 1;
+}
+
+.todo_anim-exit-active {
+    transform: translateX(-150px);
+    transition: all 250ms linear;
+}

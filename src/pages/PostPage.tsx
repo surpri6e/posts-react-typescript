@@ -23,30 +23,22 @@ const PostPage: React.FC = () => {
     setComms(res.data);
   })
 
-  const [openedPost, setOpenedPost] = React.useState<IPost>({id: parseInt(id!), title: '', body: ''});
+  const fromLocalStorage = {...JSON.parse(localStorage.getItem('openedPost')!)}
 
-  const getOpenedPost = () => {
-    setOpenedPost({
-      ...openedPost,
-      ...JSON.parse(localStorage.getItem('openedPost')!)
-    })
-
-    localStorage.removeItem('openedPost');
-  }
+  const [openedPost] = React.useState<IPost>({id: parseInt(id!), ...fromLocalStorage});
 
   console.log(openedPost)
 
   React.useEffect(() => {
     serverRequest();
     getComms();
-    getOpenedPost();
     // eslint-disable-next-line
   }, [])
 
   return (
     <div className={'postpage'}>
       {
-        (err === '' || errComms === '') && (parseInt(id!) < 1600000)
+        (err === '' || errComms === '') && (parseInt(id!) <= 100)
           ?
             <div>
               <PostTitle cl={'post__title'} loading={isLoading} post={post}/>

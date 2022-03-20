@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Button from '../components/UI/buttons/Button';
 import Input from '../components/UI/inputs/Input';
 import { AuthContext } from '../context/auth'
@@ -6,10 +7,13 @@ import { AuthContext } from '../context/auth'
 const LoginPage: React.FC = () => {
   const { setIsAuth } = React.useContext(AuthContext);
 
+  const router = useNavigate();
+
   const login = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     setIsAuth!(true);
     localStorage.setItem('auth', 'true');
+    router('/posts');
   }
 
   const marginTop: string = '15px';

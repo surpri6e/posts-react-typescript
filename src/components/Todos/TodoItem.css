@@ -1,0 +1,114 @@
+.todo-item {
+    display: flex;
+    border: 1px solid teal;
+    width: 100%;
+    min-height: 50px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    margin-bottom: 15px;
+
+    position: relative;
+}
+
+
+@media (min-width: 800px) {
+    .todo-item::before {
+    content: attr(data-title);
+    position: absolute;
+    z-index: 2;
+    background: teal;
+    color: white;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    font-weight: 300;
+    padding: 5px 15px;
+    border-radius: 10px;
+    left: 60%;
+    max-width: 280px;
+    top: 60%;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 200ms linear;
+    }
+    .todo-item:hover::before {
+        opacity: 1;
+    }
+}
+.todo-item *:not(:last-child, .todo-item_line) {
+    margin-right: 5px;
+}
+
+.todo-item__text {
+    width: 80%;
+    font-size: 1.2rem;
+}
+
+.todo-item__completed {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-item__completed > span {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid teal;
+    cursor: pointer;
+}
+
+.todo-item__completed-completed {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background: teal;
+    border-radius: 50%;
+}
+
+.todo-item__time {
+    width: 10%;
+    border: 1px solid teal;
+    height: 30px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 70%;
+}
+
+@media (max-width: 998px) {
+    .todo-item__text {
+        width: 70%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .todo-item__completed > span {
+        width: 20px;
+        height: 20px;
+    }
+    .todo-item__time {
+        width: 20%;
+    }
+}
+
+@media (max-width: 450px) {
+    .todo-item__text {
+        width: 60%;
+    }
+    .todo-item__completed {
+        width: 15%;
+    }
+    .todo-item__completed > span {
+        width: 15px;
+        height: 15px;
+    }
+    .todo-item__time {
+        width: 25%;
+    }
+}
+

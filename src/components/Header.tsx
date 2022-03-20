@@ -12,7 +12,7 @@ const Header: React.FC = () => {
         ev.preventDefault();
         setIsAuth!(false);
         localStorage.removeItem('auth');
-        console.log('sd')
+        localStorage.removeItem('openedPost');
     }
 
 

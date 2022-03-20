@@ -7,7 +7,7 @@ import { ITodo } from '../types/todosTypes'
 
 const TodosPage: React.FC = () => {
     const [todos, setTodos] = React.useState<ITodo[]>(() => {
-      return JSON.parse(localStorage.getItem('todos')!);
+      return JSON.parse(localStorage.getItem('todos')!) || [];
     });
     const [isFormCreate, setIsFormCreate] = React.useState<boolean>(false);
 
@@ -16,9 +16,6 @@ const TodosPage: React.FC = () => {
         return [...todos, newTodo]
       });
       setIsFormCreate(false);
-      // setTimeout(() => {
-      //   newTodo.overdue = true;
-      // }, parseInt(`${newTodo.time}0`));
     }
 
     useEffect(() => {

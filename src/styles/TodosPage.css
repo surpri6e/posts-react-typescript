@@ -21,3 +21,42 @@
     font-size: 60px;
     color: teal;
 }
+
+.todos__header *:not(:first-child) {
+    margin-left: 20px;
+}
+
+@media (max-width: 720px) {
+    .todos__header > button {
+        font-size: 1rem;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 575px) {
+    .todos__header > button {
+        font-size: 0.7rem;
+        min-width: 60px;
+    }
+}
+
+@media (max-width: 575px) {
+    .todos__header *:not(:first-child) {
+        margin-left: 8px;
+    }
+
+    .todos__header > button {
+        font-size: 0.7rem;
+        min-width: 60px;
+    }
+
+    .todos__header > span {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 380px) {
+    .todos__header > button {
+        font-size: 0.5rem;
+    }
+}

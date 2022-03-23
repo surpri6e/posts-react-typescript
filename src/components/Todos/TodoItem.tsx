@@ -1,4 +1,5 @@
 import React from 'react'
+import { OvtodosContext } from '../../context/ovtodos';
 import { ITodo } from '../../types/todosTypes';
 import './TodoItem.css'
 
@@ -9,32 +10,42 @@ interface TodoItemProps {
   setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
   currentTodo: ITodo;
   addon: string;
-  overdue: boolean;
 }
 
-const TodoItem: React.FC<TodoItemProps> = ({text, time, todos, setTodos, currentTodo, addon, overdue}) => {
+const TodoItem: React.FC<TodoItemProps> = ({text, time, todos, setTodos, currentTodo, addon}) => {
   
   const [completed, setCompleted] = React.useState<boolean>(false);
 
   const deleteTodo = () => {
-    if(window.confirm('Точно сделал?')) {
-      setCompleted(true);
-      setTodos(todos.filter(p => p.id !== currentTodo.id));
-    }
+    setCompleted(true);
+    setTodos(todos.filter(p => p.id !== currentTodo.id));
 
     return;
   }
 
-  const [delay, setDelay] = React.useState<boolean>(false);
-  setTimeout(() => {
-    setDelay(true);
-  }, parseInt(`${time}000`));
+  const {ovtodos, setOvtodos} = React.useContext(OvtodosContext)
 
-  //в локал сторадж, если выполнен, класть уже с выполненым значением, чтобы 
-  //при захле сразу же отображать как просроченую при помощи state через пропсы
+  const [delay, setDelay] = React.useState<boolean>(() => {
+    return false;
+  });
+
+  React.useEffect(() => {
+  if(time) {
+    let timer = setTimeout(() => {
+      setDelay(true);
+      setOvtodos!([...ovtodos!, currentTodo]);
+      setTodos(todos.filter(p => p.id !== currentTodo.id));
+      clearTimeout(timer);
+      // currentTodo.overdue = true;
+      // localStorage.setItem('todos', JSON.stringify(todos))!;
+    }, parseInt(`${time}00`));
+  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [delay])
+
 
   return (
-    <div className={'todo-item'} data-title={addon ? addon : 'Примечаний нет'} style={{background: delay ? '#ff726f' : 'transparent'}}>
+    <div className={'todo-item'} data-title={addon ? addon : 'Примечаний нет'} style={{background: currentTodo.overdue || delay ? '#ff726f' : 'transparent'}}>
       <div className={'todo-item__completed'}>
         <span onClick={deleteTodo}>
           {
@@ -50,7 +61,13 @@ const TodoItem: React.FC<TodoItemProps> = ({text, time, todos, setTodos, current
         {text}
       </div>
       <div className={'todo-item__time'}>
-        {time} мин.
+        {
+          time
+            ?
+              `${time} мин.`
+            :
+              `Неог.`
+        }
       </div>
     </div>
   )

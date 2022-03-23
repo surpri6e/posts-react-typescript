@@ -40,7 +40,7 @@ const TodoCreateForm: React.FC<TodoCreateFormProps> = ({create}) => {
         change={(ev: React.ChangeEvent<HTMLInputElement>) => setInput({...input, additional: ev.target.value})}
       />
       <Select options={[
-        {value: 'default', text: 'Default '},
+        {value: 'default', text: 'Неограничено'},
         {value: '15', text: '15min'},
         {value: '25', text: '25min'},
         {value: '30', text: '30min'},

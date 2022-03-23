@@ -6,12 +6,12 @@ import TodoItem from './TodoItem';
 import './TodosList.css'
 
 interface TodosListProps {
-    todos: ITodo[];
-    setTodos: React.Dispatch<React.SetStateAction<ITodo[]>>;
+    todos?: ITodo[];
+    setTodos?: React.Dispatch<React.SetStateAction<ITodo[]>>;
 }
 
 const TodosList: React.FC<TodosListProps> = ({todos, setTodos}) => {
-  if(!todos.length) {
+  if(!todos?.length) {
     return <Mistake mistake={'Нет дел что-ли?'}/>
   }
 
@@ -22,12 +22,11 @@ const TodosList: React.FC<TodosListProps> = ({todos, setTodos}) => {
                   <CSSTransition key={todo.id} timeout={500} classNames='todo_anim'>
                       <TodoItem
                         todos={todos}
-                        setTodos={setTodos}
+                        setTodos={setTodos!}
                         currentTodo={todo}
                         text={todo.text}
                         time={todo.time}
                         addon={todo.additional}
-                        overdue={todo.overdue}
                       />
                   </CSSTransition>
                 )
